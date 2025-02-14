@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OnlyLove</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
 </head>
 <body>
-    <div class="logo">💖 OnlyLove 💖</div>
-    <div class="heart"></div>
+    <div class="logo">💖 Hey Beautiful 💖</div>
+    <div class="heart" id="mainHeart"></div>
     <div class="question"> <strong> Will you be my Valentine?🥰</strong></div>
     <div class="buttons">
         <button class="btn" onclick="showMessage('Yes, of course!')">Yes, of course🤗</button>
@@ -17,17 +16,31 @@
         <button class="btn" onclick="showMessage('You chose option 2!')">Choose option 2😁 </button>
     </div>
     <div class="message" id="loveMessage"></div>
-    <footer bg: #6a0572>
+    <footer>
         &copy; 2025. Beautifully created by Hari Bhatta ♥ ♥ ♥ 
     </footer>
 
+    <!-- Hearts flying effect -->
+    <div id="heartsEffect" class="hearts-effect"></div>
+
     <script>
         function showMessage(message) {
-            const loveMessage = document.getElementById('loveMessage');
-            loveMessage.innerHTML = `My Dear Love,<br/> <br/>You are the light of my life, the warmth of my soul, and the melody of my heart. On this special day, I want you to know how deeply I cherish and adore you. Your smile brightens even the darkest days, and your love completes me. Thank you for being you, for sharing your heart with me, and for making every moment magical. I promise to stand by your side, to cherish you always, and to love and support you with every beat of my heart.<br/><br/>Happy Valentine's Day,😘`;
-            loveMessage.style.display = 'block';
-            document.querySelector('.buttons').style.display = 'none';
-            document.querySelector('.question').innerText = "Yayyy! I'm the happiest person right now🥰🙌";
+            // Trigger the heart explosion effect
+            triggerHeartExplosion();
+
+            setTimeout(() => {
+                const loveMessage = document.getElementById('loveMessage');
+                loveMessage.innerHTML = `My Dear Love,<br/> <br/>You are the light of my life, the warmth of my soul, and the melody of my heart. On this special day, I want you to know how deeply I cherish and adore you. Your smile brightens even the darkest days, and your love completes me. Thank you for being you, for sharing your heart with me, and for making every moment magical. I promise to stand by your side, to cherish you always, and to love and support you with every beat of my heart.<br/><br/>Happy Valentine's Day,😘`;
+                loveMessage.style.display = 'block';
+                document.querySelector('.buttons').style.display = 'none';
+                document.querySelector('.question').innerText = "Yayyy! I'm the happiest person right now🥰🙌";
+            }, 500);
+        }
+
+        function triggerHeartExplosion() {
+            const mainHeart = document.getElementById('mainHeart');
+            const heartsEffect = document.getElementById('heartsEffect');
+            mainHeart.style.animation = 'explodeHeart 1s forwards';
         }
     </script>
 </body>
@@ -38,10 +51,6 @@
         box-sizing: border-box;
     }
     body {
-        background: linear-gradient(rgb(160, 32, 240), rgba(0, 0, 0, 0.235)), 
-                    url('https://images.unsplash.com/photo-1615966650071-855b15f29ad1?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        background-size: cover;
-        background-position: center;
         font-family: 'Poppins', sans-serif;
         height: 100vh;
         display: flex;
@@ -50,15 +59,19 @@
         text-align: center;
         color: #fff;
         flex-direction: column;
-        position: relativ       e;
-}
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(rgb(160, 32, 240), rgba(0, 0, 0, 0.235)), 
+                    url('https://images.unsplash.com/photo-1615966650071-855b15f29ad1?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        background-position: center;
+    }
     .logo {
         font-family: 'Pacifico', cursive;
         font-size: 3em;
         margin-bottom: 50px;
         color: #fff;
         text-shadow: 2px 2px #000000;
-        margin-top: -50px;
     }
     .heart {
         width: 70px;
@@ -91,9 +104,15 @@
     }
     @keyframes heartbeat {
         0% { transform: scale(1) rotate(-45deg); }
-        50% { transform: scale(1.2) rotate(-45deg); }
+        50% { transform: scale(1.19) rotate(-45deg); }
         100% { transform: scale(1) rotate(-45deg); }
     }
+
+    /* Heart explosion animation */
+    @keyframes explodeHeart {
+        50% { transform: scale(3); }
+    }
+
     .question {
         font-size: 1.2em;
         margin-bottom: 40px;
